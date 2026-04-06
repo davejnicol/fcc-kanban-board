@@ -8,15 +8,32 @@
 	</head>
 	<body>
 		<header>
-			<div class="logo">
-				<?xml version="1.0" encoding="utf-8"?>
-				<svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M9.6 4H4.4C3.6268 4 3 4.6268 3 5.4V19.6C3 20.3732 3.6268 21 4.4 21H9.6C10.3732 21 11 20.3732 11 19.6V5.4C11 4.6268 10.3732 4 9.6 4Z" stroke-width="1.7" stroke-linecap="round" class="board-1" />
-					<path d="M19.6 4H15.4C14.6268 4 14 4.6268 14 5.4V14.6C14 15.3732 14.6268 16 15.4 16H19.6C20.3732 16 21 15.3732 21 14.6V5.4C21 4.6268 20.3732 4 19.6 4Z" stroke-width="1.7" stroke-linecap="round" class="board-2" />
-				</svg>
-				<div class="brand">Kanban Board</div>
+			<div class="branding">
+				<div class="logo">
+					<?xml version="1.0" encoding="utf-8"?>
+					<svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M9.6 4H4.4C3.6268 4 3 4.6268 3 5.4V19.6C3 20.3732 3.6268 21 4.4 21H9.6C10.3732 21 11 20.3732 11 19.6V5.4C11 4.6268 10.3732 4 9.6 4Z" stroke-width="1.7" stroke-linecap="round" class="board-1" />
+						<path d="M19.6 4H15.4C14.6268 4 14 4.6268 14 5.4V14.6C14 15.3732 14.6268 16 15.4 16H19.6C20.3732 16 21 15.3732 21 14.6V5.4C21 4.6268 20.3732 4 19.6 4Z" stroke-width="1.7" stroke-linecap="round" class="board-2" />
+					</svg>
+					<div class="brand">Kanban Board</div>
+				</div>
+				<div class="slogan">A <span>Brilliant</span> Visual Project Management Tool</div>
 			</div>
-			<div class="slogan">A <span>Brilliant</span> Visual Project Management Tool</div>
+			<div class="action-bar">
+				<div class="kanban-actions">Add Project</div>
+				<div class="theme-switcher">
+					<button id="theme-toggle" class="theme-toggle" aria-label="Switch to dark theme">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 180 180">
+							<g id="toogle-sun">
+								<path
+									d="M153.64,116.36l26.36-26.36-26.36-26.36V26.36h-37.28L90,0l-26.36,26.36H26.36v37.28L0,90l26.36,26.36v37.28h37.28l26.36,26.36,26.36-26.36h37.28v-37.28ZM90,140c-27.61,0-50-22.39-50-50s22.39-50,50-50,50,22.39,50,50-22.39,50-50,50Z"
+								/>
+							</g>
+							<g id="toggle-circle"><path d="M127.5,90c0,20.71-16.79,37.5-37.5,37.5s-37.5-16.79-37.5-37.5,16.79-37.5,37.5-37.5,37.5,16.79,37.5,37.5Z" /></g>
+						</svg>
+					</button>
+				</div>
+			</div>
 		</header>
 		<main class="container">
 			<div class="board">
@@ -81,5 +98,6 @@
 			Kanban Board
 		</footer>
 		<script src="js/script.js"></script>
+		<script type="module" src="js/theme-toggle.js"></script>
 	</body>
 </html>

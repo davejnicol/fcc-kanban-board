@@ -38,7 +38,7 @@ function dragEnd() {
     setTimeout(() => { 
         toast.classList.remove("toast-show");
         toast.classList.add("toast-hidden");    
-    }, 3000);
+    }, 2000);
 }
 
 function dragOver(e) {

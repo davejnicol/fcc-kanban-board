@@ -3,16 +3,22 @@
 	--clr-neutral-100: hsl(0 0% 95%);
 	--clr-neutral-200: hsl(0 0% 82.5%);
 	/* --clr-neutral-400: hsl(0 0% 60%); */
-	/* --clr-neutral-800: hsl(0 0% 17.5%); */
+	--clr-neutral-600: hsl(0 0% 40%);
+	--clr-neutral-700: hsl(0 0% 30%);
+	--clr-neutral-800: hsl(0 0% 17.5%);
 	--clr-neutral-900: hsl(0 0% 7.5%);
 
 	--clr-blue-400: hsl(198 78% 60%);
+	--clr-blue-600: hsl(198 78% 40%);
 
 	--clr-red-500: hsl(0 90% 50%);
+	--clr-red-600: hsl(0 90% 40%);
 
-	--clr-green-300: hsl(134 100% 75%);
+	--clr-green-300: hsl(134 100% 70%);
+	--clr-green-600: hsl(134 100% 45%);
 
 	--clr-orange-300: hsl(37 89% 70%);
+	--clr-orange-500: hsl(37 89% 50%);
 
 	--clr-pink-500: hsl(336 83% 50%);
 
@@ -28,9 +34,51 @@
 	--size-3: 0.875rem;
 	--size-4: 1rem;
 
-	--background: var(--clr-neutral-100);
-	--color-primary: var(--clr-neutral-900);
+	/* For Light Theme */
+	--bg-primary-light: var(--clr-white);
+	--bg-secondary-light: var(--clr-neutral-100);
+	--bg-hover-light: var(--clr-neutral-200);
+	--box-shadow-light: var(--clr-neutral-900);
+	--text-primary-light: var(--clr-neutral-900);
+	--card-background-light: var(--clr-white);
+	--list-new-light: var(--clr-blue-400);
+	--list-backlog-light: var(--clr-orange-300);
+	--list-active-light: var(--clr-green-300);
+	--list-overdue-light: var(--clr-red-500);
+	--list-completed-light: var(--clr-pink-500);
+
+	/* For Dark Theme */
+	--bg-primary-dark: var(--clr-neutral-900);
+	--bg-secondary-dark: var(--clr-neutral-800);
+	--bg-hover-dark: var(--clr-neutral-700);
+	--box-shadow-dark: var(--clr-neutral-700);
+	--text-primary-dark: var(--clr-neutral-100);
+	--card-background-dark: var(--clr-neutral-600);
+	--list-new-dark: var(--clr-blue-600);
+	--list-backlog-dark: var(--clr-orange-500);
+	--list-active-dark: var(--clr-green-600);
+	--list-overdue-dark: var(--clr-red-600);
+	--list-completed-dark: var(--clr-pink-500);
+
+	color-scheme: light;
+	--background-primary: light-dark(var(--bg-primary-light), var(--bg-primary-dark));
+	--background-secondary: light-dark(var(--bg-secondary-light), var(--bg-secondary-dark));
+	--background-hover: light-dark(var(--bg-hover-light), var(--bg-hover-dark));
+	--box-shadow: light-dark(var(--box-shadow-light), var(--box-shadow-dark));
+	--color-primary: light-dark(var(--text-primary-light), var(--text-primary-dark));
 	--color-accent: var(--clr-pink-500);
+	--card-background: light-dark(var(--card-background-light), var(--card-background-dark));
+	--list-clr-new: light-dark(var(--list-new-light), var(--list-new-dark));
+	--list-clr-backlog: light-dark(var(--list-backlog-light), var(--list-backlog-dark));
+	--list-clr-active: light-dark(var(--list-active-light), var(--list-active-dark));
+	--list-clr-overdue: light-dark(var(--list-overdue-light), var(--list-overdue-dark));
+	--list-clr-completed: light-dark(var(--list-completed-light), var(--list-completed-dark));
+}
+[data-theme="light"] {
+	color-scheme: light;
+}
+[data-theme="dark"] {
+	color-scheme: dark;
 }
 
 /* RESET */
@@ -55,6 +103,7 @@ svg {
 
 /* CUSTOM STYLES */
 body {
+	background: var(--background-primary);
 	color: var(--color-primary);
 	font-family: var(--ff-primary);
 	font-size: var(--fs-reg);
@@ -64,7 +113,6 @@ body {
 	grid-template-rows: auto 1fr auto;
 	grid-template-areas: "header" "main" "footer";
 	min-block-size: 100svh;
-	/* align-items: stretch; */
 }
 header {
 	grid-area: "header";
@@ -72,11 +120,6 @@ header {
 	border-bottom: 1px solid var(--color-primary);
 	line-height: 1;
 	padding: var(--size-2);
-
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: var(--size-4);
 }
 main {
 	grid-area: "main";
@@ -86,6 +129,13 @@ footer {
 }
 
 /* HEADER STYLES */
+.branding {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--size-4);
+	padding-block-end: var(--size-2);
+}
 .logo {
 	display: flex;
 	gap: var(--size-1);
@@ -116,6 +166,14 @@ footer {
 		font-size: var(--fs-mid);
 	}
 }
+.action-bar {
+	background-color: var(--background-secondary);
+	padding: var(--size-2) var(--size-4);
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 
 .container {
 	padding: var(--size-4);
@@ -136,12 +194,14 @@ footer {
 }
 
 .list {
-	background: var(--background);
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	background: var(--background-secondary);
+	border-radius: 6px;
+	box-shadow: 0 4px 8px rgba(from var(--box-shadow) r g b / 0.2);
+
 	overflow: hidden;
 }
 .list-header {
+	color: oklch(from var(--list-color) round(1.21 - L) 0 0);
 	padding: var(--size-1) var(--size-3) var(--size-2);
 	display: flex;
 	align-items: center;
@@ -153,7 +213,7 @@ footer {
 	}
 }
 .list-new {
-	--list-color: var(--clr-blue-400);
+	--list-color: var(--list-clr-new);
 	& .list-header {
 		background: var(--list-color);
 	}
@@ -162,7 +222,7 @@ footer {
 	}
 }
 .list-backlog {
-	--list-color: var(--clr-orange-300);
+	--list-color: var(--list-clr-backlog);
 	& .list-header {
 		background: var(--list-color);
 	}
@@ -171,7 +231,7 @@ footer {
 	}
 }
 .list-active {
-	--list-color: var(--clr-green-300);
+	--list-color: var(--list-clr-active);
 	& .list-header {
 		background: var(--list-color);
 	}
@@ -180,7 +240,7 @@ footer {
 	}
 }
 .list-overdue {
-	--list-color: var(--clr-red-500);
+	--list-color: var(--list-clr-overdue);
 	& .list-header {
 		background: var(--list-color);
 	}
@@ -189,12 +249,13 @@ footer {
 	}
 }
 .list-completed {
-	--list-color: var(--clr-pink-500);
+	--list-color: var(--list-clr-completed);
 	& .list-header {
 		background: var(--list-color);
 	}
 	& .card {
 		border-color: var(--list-color);
+		text-decoration: line-through;
 	}
 }
 
@@ -203,10 +264,10 @@ footer {
 	padding: var(--size-2);
 }
 .card {
-	background-color: var(--clr-white);
-	border-top: 8px solid currentColor; /* Might switch to left */
-	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	background: var(--card-background);
+	border-left: 8px solid currentColor;
+	border-radius: 6px;
+	box-shadow: 0 4px 8px rgba(from var(--box-shadow) r g b / 0.2);
 	margin-bottom: var(--size-4);
 	padding: var(--size-1) var(--size-3) var(--size-2);
 	transition:
@@ -216,27 +277,27 @@ footer {
 	cursor: grab;
 }
 .card:active {
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 8px rgba(from var(--box-shadow) r g b / 0.2);
 	outline: 2px solid var(--color-accent);
 	transform: scale(0.95);
 	cursor: grabbing;
 }
 
 .list.over {
-	background-color: var(--clr-neutral-200);
+	background-color: var(--background-hover);
 }
 
 .toast {
 	position: fixed;
 	bottom: 60px;
 	right: 0;
-	background: #333;
+	background: var(--color-primary);
 	border-radius: var(--size-4);
-	color: #fff;
+	color: contrast-color(var(--color-primary));
 	padding: var(--size-4);
 	transform: translateX(100%);
 	transition:
-		transform 0.5s,
+		transform 0.3s ease-in-out,
 		opacity 0.5s;
 }
 .toast-hidden {
@@ -247,3 +308,32 @@ footer {
 	right: 20px;
 	transform: translateX(0%);
 }
+
+/* THEME TOGGLE STYLING */
+#theme-toggle {
+	background: var(--background-secondary);
+	border: 0;
+	cursor: pointer;
+	padding: var(--size-2);
+	position: relative;
+
+	&:hover,
+	&:focus-visible {
+		outline: 0;
+		background: var(--background-secondary);
+	}
+
+	& svg {
+		fill: var(--color-primary);
+	}
+}
+#theme-toggle #toggle-circle {
+	transition: transform 500ms ease-out;
+}
+body[data-theme="light"] #theme-toggle #toggle-circle {
+	transform: translateX(-14%);
+}
+body[data-theme="dark"] #theme-toggle #toggle-circle {
+	transform: translateX(0);
+}
+/* THEME TOGGLE STYLING ENDS */
