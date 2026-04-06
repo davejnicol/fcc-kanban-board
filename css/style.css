@@ -174,6 +174,33 @@ footer {
 	align-items: center;
 	justify-content: space-between;
 }
+.kanban-actions {
+	display: flex;
+	gap: var(--size-2);
+}
+.btn {
+	background: var(--card-background);
+	border: none;
+	border-radius: 6px;
+	font-size: var(--fs-reg);
+	padding: var(--size-1) var(--size-2);
+	transition: all 0.3s ease;
+	cursor: pointer;
+
+	display: flex;
+	align-items: center;
+	gap: var(--size-1);
+
+	& svg {
+		stroke: currentColor;
+	}
+}
+.add-global-btn {
+	&:hover,
+	&:focus-visible {
+		background: var(--list-clr-new);
+	}
+}
 
 .container {
 	padding: var(--size-4);
@@ -255,6 +282,8 @@ footer {
 	}
 	& .card {
 		border-color: var(--list-color);
+	}
+	& .card-text {
 		text-decoration: line-through;
 	}
 }
@@ -269,18 +298,37 @@ footer {
 	border-radius: 6px;
 	box-shadow: 0 4px 8px rgba(from var(--box-shadow) r g b / 0.2);
 	margin-bottom: var(--size-4);
-	padding: var(--size-1) var(--size-3) var(--size-2);
+	padding: var(--size-1) 2px var(--size-2) var(--size-1);
 	transition:
 		transform 0.2s,
 		box-shadow 0.2s,
 		outline 0.2s;
 	cursor: grab;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .card:active {
 	box-shadow: 0 4px 8px rgba(from var(--box-shadow) r g b / 0.2);
 	outline: 2px solid var(--color-accent);
 	transform: scale(0.95);
 	cursor: grabbing;
+}
+.card-controls {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	transform: scale(0.9);
+
+	& .btn {
+		padding: 0;
+		padding-inline: 2px;
+	}
+	& .btn:hover,
+	& .btn:focus-visible {
+		outline: 0;
+	}
 }
 
 .list.over {

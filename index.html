@@ -20,7 +20,27 @@
 				<div class="slogan">A <span>Brilliant</span> Visual Project Management Tool</div>
 			</div>
 			<div class="action-bar">
-				<div class="kanban-actions">Add Project</div>
+				<div class="kanban-actions">
+					<button class="btn add-global-btn" onclick="addNewProject()">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="18"
+							height="18"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="icon icon-tabler icons-tabler-outline icon-tabler-plus"
+						>
+							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+							<path d="M12 5l0 14" />
+							<path d="M5 12l14 0" />
+						</svg>
+						Add New Project
+					</button>
+				</div>
 				<div class="theme-switcher">
 					<button id="theme-toggle" class="theme-toggle" aria-label="Switch to dark theme">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 180 180">
@@ -43,10 +63,7 @@
 						<div class="list-name">New</div>
 						<div class="list-count">(<span>0</span>)</div>
 					</div>
-					<div class="card-content">
-						<div class="card" id="card1" draggable="true">Wash Dishes</div>
-						<div class="card" id="card2" draggable="true">Buy Groceries</div>
-					</div>
+					<div class="card-content"></div>
 				</div>
 
 				<!-- LIST BACKLOG -->
@@ -64,9 +81,7 @@
 						<div class="list-name">Active</div>
 						<div class="list-count">(<span>0</span>)</div>
 					</div>
-					<div class="card-content">
-						<div class="card" draggable="true" id="card3">Learn To Code</div>
-					</div>
+					<div class="card-content"></div>
 				</div>
 
 				<!-- LIST OVERDUE -->

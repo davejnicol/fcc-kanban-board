@@ -78,6 +78,72 @@ function dragDrop(e) {
     this.classList.remove("over");
 }
 
+// --- FUNCTIONALITY TO ADD, EDIT & DELETE PROJECTS ---
+function addNewProject(listId) {
+    // 1. Target the specific "New" list
+    const list = document.getElementById("list-new");
+    if (!list) {
+        console.error("Could not find the 'New' list. Check your HTML ID.");
+        return;
+    }
+
+    const container = list.querySelector('.card-content');
+    
+    // 2. Prompt for project name
+    const projectName = prompt("Enter project name:");
+    if (!projectName || projectName.trim() === "") return; // Exit if user cancels
+
+    // 3. Create the card element
+    const card = document.createElement('div');
+    card.classList.add('card');
+    
+    // Generate a unique ID using the current timestamp
+    card.id = "card-" + Date.now(); 
+    card.draggable = true;
+    
+    // Create a wrapper for the text so we can edit it easily
+    card.innerHTML = `
+        <span class="card-text">${projectName}</span>
+        <div class="card-controls">
+            <button class="btn edit-btn" onclick="editCard('${card.id}')">✏️</button>
+            <button class="btn delete-btn" onclick="deleteCard('${card.id}')">🗑️</button>
+        </div>
+    `;
+
+    // 4. Attach the drag event listeners to the NEW card
+    card.addEventListener("dragstart", dragStart);
+    card.addEventListener("dragend", dragEnd);
+
+    // 5. Append to the list and update UI
+    container.appendChild(card);
+    updateListCount(list);
+    saveState();    // Ensure the new card is remembered!
+}
+
+function deleteCard(cardId) {
+    const card = document.getElementById(cardId);
+    const list = card.closest(".list");
+    
+    if (confirm("Are you sure you want to delete this project?")) {
+        card.remove();
+        updateListCount(list);
+        saveState();    // Remove from localStorage
+    }
+}
+
+function editCard(cardId) {
+    const card = document.getElementById(cardId);
+    const textSpan = card.querySelector(".card-text");
+    const currentText = textSpan.innerText;
+    
+    const newText = prompt("Edit project name:", currentText);
+    
+    if (newText && newText.trim() !== "") {
+        textSpan.innerText = newText;
+        saveState();    // Update text in localStorage
+    }
+}
+
 // --- UTILITY & PERSISTENCE ---
 function updateListCount(listElement) {
     if (!listElement) return;
@@ -95,26 +161,56 @@ function saveState() {
 
     // Loop through all cards and record which list container they are in
     document.querySelectorAll(".card").forEach(card => {
-        const listId = card.closest(".list").id; 
-        state[card.id] = listId;
+        const textElement = card.querySelector(".card-text");
+        
+        // Only save if the textElement exists
+        if (textElement) {
+            state[card.id] = {
+                listId: card.closest(".list").id,
+                text: textElement.innerText
+            };
+        } else {
+            console.warn(`Card ${card.id} is missing the .card-text span!`);
+        }
     });
     localStorage.setItem("kanbanState", JSON.stringify(state));
 }
 
 function loadState() {
     const savedState = localStorage.getItem("kanbanState");
-    if (!savedState) return;
+    if (!savedState) {
+        // Even if empty, update counts to show "0"
+        lists.forEach(list => updateListCount(list));
+        return;
+    }
 
     const state = JSON.parse(savedState);
     
     // Iterate through the saved IDs and move elements back to their containers
-    for (const [cardId, listId] of Object.entries(state)) {
-        const card = document.getElementById(cardId);
-        const list = document.getElementById(listId);
-        
-        if (card && list) {
+    for (const [cardId, data] of Object.entries(state)) {
+        const list = document.getElementById(data.listId);
+
+        if (list) {
             const container = list.querySelector(".card-content");
-            if (container) container.appendChild(card);
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.id = cardId;
+            card.draggable = true;
+            
+            card.innerHTML = `
+                <span class="card-text">${data.text}</span>
+                <div class="card-controls">
+                    <button class="btn edit-btn" onclick="editCard('${card.id}')">✏️</button>
+                    <button class="btn delete-btn" onclick="deleteCard('${card.id}')">🗑️</button>
+                </div>
+            `;
+
+            card.addEventListener("dragstart", dragStart);
+            card.addEventListener("dragend", dragEnd);
+            container.appendChild(card);
         }
     }
+
+    // Refresh all counts after rebuilding the board
+    lists.forEach(list => updateListCount(list));
 }
