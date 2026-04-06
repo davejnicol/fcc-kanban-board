@@ -1,12 +1,14 @@
 :root {
 	--clr-white: hsl(0 0% 100%);
 	--clr-neutral-100: hsl(0 0% 95%);
-	/* --clr-neutral-200: hsl(0 0% 82.5%); */
+	--clr-neutral-200: hsl(0 0% 82.5%);
 	/* --clr-neutral-400: hsl(0 0% 60%); */
 	/* --clr-neutral-800: hsl(0 0% 17.5%); */
 	--clr-neutral-900: hsl(0 0% 7.5%);
 
 	--clr-blue-400: hsl(198 78% 60%);
+
+	--clr-red-500: hsl(0 90% 50%);
 
 	--clr-green-300: hsl(134 100% 75%);
 
@@ -122,14 +124,12 @@ footer {
 /* BOARD STYLES */
 .board {
 	display: grid;
-	grid-auto-flow: row;
-	grid-template-rows: repeat(auto-fit, minmax(18%, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(32%, 1fr));
 	height: 100%;
 	gap: var(--size-4);
 }
-@media (min-width: 860px) {
+@media (min-width: 900px) {
 	.board {
-		grid-auto-flow: column;
 		grid-template-columns: repeat(auto-fit, minmax(18%, 1fr));
 		grid-template-rows: auto;
 	}
@@ -140,7 +140,6 @@ footer {
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	overflow: hidden;
-	/* padding-inline: var(--size-2); */
 }
 .list-header {
 	padding: var(--size-1) var(--size-3) var(--size-2);
@@ -162,6 +161,35 @@ footer {
 .list-active .list-header {
 	background: var(--clr-green-300);
 }
+.list-overdue .list-header {
+	background: var(--clr-red-500);
+}
 .list-completed .list-header {
 	background: var(--clr-pink-500);
+}
+
+.card-content {
+	margin-block: var(--size-3);
+	padding: var(--size-2);
+}
+.card {
+	background-color: var(--clr-white);
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	margin-bottom: var(--size-4);
+	padding: var(--size-3);
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s;
+	cursor: grab;
+}
+.card:active {
+	border: 1px solid var(--color-accent);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	transform: scale(0.95);
+	cursor: grabbing;
+}
+
+.list.over {
+	background-color: var(--clr-neutral-200);
 }
