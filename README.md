@@ -12,6 +12,7 @@ This is a Kanban Board project using HTML, CSS, and JS. Kanban Board is a brilli
         - [Screenshot](#screenshot)
     - [My process](#my-process)
         - [Built with](#built-with)
+    - [Resource](#resource)
     - [Author](#author)
 
 ## Overview
@@ -27,7 +28,13 @@ This is a Kanban Board project using HTML, CSS, and JS. Kanban Board is a brilli
 ### Built with
 
 - Semantic HTML5 markup
+- CSS custom properties
+- CSS Grid & Flex
 - Javascript
+
+## Resource
+
+- [HTML Drag and Drop API - MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
 
 ## Author
 

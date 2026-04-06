@@ -152,20 +152,50 @@ footer {
 		font-weight: var(--fw-600);
 	}
 }
-.list-new .list-header {
-	background: var(--clr-blue-400);
+.list-new {
+	--list-color: var(--clr-blue-400);
+	& .list-header {
+		background: var(--list-color);
+	}
+	& .card {
+		border-color: var(--list-color);
+	}
 }
-.list-backlog .list-header {
-	background: var(--clr-orange-300);
+.list-backlog {
+	--list-color: var(--clr-orange-300);
+	& .list-header {
+		background: var(--list-color);
+	}
+	& .card {
+		border-color: var(--list-color);
+	}
 }
-.list-active .list-header {
-	background: var(--clr-green-300);
+.list-active {
+	--list-color: var(--clr-green-300);
+	& .list-header {
+		background: var(--list-color);
+	}
+	& .card {
+		border-color: var(--list-color);
+	}
 }
-.list-overdue .list-header {
-	background: var(--clr-red-500);
+.list-overdue {
+	--list-color: var(--clr-red-500);
+	& .list-header {
+		background: var(--list-color);
+	}
+	& .card {
+		border-color: var(--list-color);
+	}
 }
-.list-completed .list-header {
-	background: var(--clr-pink-500);
+.list-completed {
+	--list-color: var(--clr-pink-500);
+	& .list-header {
+		background: var(--list-color);
+	}
+	& .card {
+		border-color: var(--list-color);
+	}
 }
 
 .card-content {
@@ -174,22 +204,46 @@ footer {
 }
 .card {
 	background-color: var(--clr-white);
+	border-top: 8px solid currentColor; /* Might switch to left */
 	border-radius: 8px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	margin-bottom: var(--size-4);
-	padding: var(--size-3);
+	padding: var(--size-1) var(--size-3) var(--size-2);
 	transition:
 		transform 0.2s,
-		box-shadow 0.2s;
+		box-shadow 0.2s,
+		outline 0.2s;
 	cursor: grab;
 }
 .card:active {
-	border: 1px solid var(--color-accent);
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	outline: 2px solid var(--color-accent);
 	transform: scale(0.95);
 	cursor: grabbing;
 }
 
 .list.over {
 	background-color: var(--clr-neutral-200);
+}
+
+.toast {
+	position: fixed;
+	bottom: 60px;
+	right: 0;
+	background: #333;
+	border-radius: var(--size-4);
+	color: #fff;
+	padding: var(--size-4);
+	transform: translateX(100%);
+	transition:
+		transform 0.5s,
+		opacity 0.5s;
+}
+.toast-hidden {
+	opacity: 0;
+}
+.toast-show {
+	opacity: 1;
+	right: 20px;
+	transform: translateX(0%);
 }
