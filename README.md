@@ -6,7 +6,7 @@ This is a Kanban Board project using HTML, CSS, and JS. Kanban Board is a brilli
 
 - [Kanban Board - FCC](#kanban-board---fcc)
     - [Table of contents](#table-of-contents)
-    - [Screenshot](#screenshot)
+    - [Screenshots](#screenshots)
     - [My process](#my-process)
         - [Built with](#built-with)
     - [Resource](#resource)
