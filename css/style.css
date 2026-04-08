@@ -305,7 +305,8 @@ footer {
 		outline 0.2s;
 	cursor: grab;
 
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr auto;
 	align-items: center;
 	justify-content: space-between;
 }
@@ -319,15 +320,25 @@ footer {
 	display: flex;
 	flex-direction: column;
 	gap: 2px;
-	transform: scale(0.9);
+	transition:
+		opacity 0.3s ease,
+		transform 0.3s ease;
 
 	& .btn {
+		opacity: 0.4;
 		padding: 0;
 		padding-inline: 2px;
+		transform: scale(0.9);
 	}
 	& .btn:hover,
 	& .btn:focus-visible {
 		outline: 0;
+		opacity: 1;
+		transform: scale(1);
+	}
+	svg {
+		width: 18px;
+		height: 100%;
 	}
 }
 

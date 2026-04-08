@@ -105,8 +105,23 @@ function addNewProject(listId) {
     card.innerHTML = `
         <span class="card-text">${projectName}</span>
         <div class="card-controls">
-            <button class="btn edit-btn" onclick="editCard('${card.id}')">✏️</button>
-            <button class="btn delete-btn" onclick="deleteCard('${card.id}')">🗑️</button>
+            <button class="btn edit-btn" onclick="editCard('${card.id}')" title="Edit">
+                <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 528.899 528.899" fill="currentColor">
+                    <g>
+                        <path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981
+                        c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611
+                        C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069
+                        L27.473,390.597L0.3,512.69z"></path>
+                    </g>
+                </svg>
+            </button>
+            <button class="btn delete-btn" onclick="deleteCard('${card.id}')" title="Delete">
+                <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6H21M5 6V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V6M8 6V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V6"></path>
+                    <path d="M14 11V17"></path>
+                    <path d="M10 11V17"></path>
+                </svg>
+            </button>
         </div>
     `;
 
@@ -200,8 +215,23 @@ function loadState() {
             card.innerHTML = `
                 <span class="card-text">${data.text}</span>
                 <div class="card-controls">
-                    <button class="btn edit-btn" onclick="editCard('${card.id}')">✏️</button>
-                    <button class="btn delete-btn" onclick="deleteCard('${card.id}')">🗑️</button>
+                    <button class="btn edit-btn" onclick="editCard('${card.id}')">
+                        <svg xmlns="http://w3.org" width="18" height="18" viewBox="0 0 528.899 528.899" fill="currentColor">
+                            <g>
+                                <path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981
+                                c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611
+                                C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069
+                                L27.473,390.597L0.3,512.69z"></path>
+                            </g>
+                        </svg>
+                    </button>
+                    <button class="btn delete-btn" onclick="deleteCard('${card.id}')">
+                        <svg xmlns="http://w3.org" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 6H21M5 6V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V6M8 6V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V6"></path>
+                            <path d="M14 11V17"></path>
+                            <path d="M10 11V17"></path>
+                        </svg>
+                    </button>
                 </div>
             `;
 
