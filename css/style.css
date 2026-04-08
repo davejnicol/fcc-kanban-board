@@ -336,10 +336,6 @@ footer {
 		opacity: 1;
 		transform: scale(1);
 	}
-	svg {
-		width: 18px;
-		height: 100%;
-	}
 }
 
 .list.over {
